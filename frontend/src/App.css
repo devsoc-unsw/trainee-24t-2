@@ -1,42 +1,157 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0 0;
+  padding: 0px 40px;
+  text-align: left;
+}
+
+.header {
+  /* border: 2px solid white; */
+  padding: 0;
+  width: 95vw;
+  margin-right: -40px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#dashboard-profile-icon {
+  height: 70px;
+  border-radius: 100px;
+  position: absolute;
+  right: 20px;
+  display: block;
+  margin-left: auto;
+}
+
+#dashboard {
+  width: 95vw;
+  position: fixed;
+  transform: translate(-50%, 0%);
+  left: 50%;
+}
+         
+#new-project-button {
+  background-image: linear-gradient(to right, #7A4DDB 0%, #3634B3  100%);
+  font-size: 26px;
+  padding: 18px 55px;
+  text-align: center;
+  margin-bottom: 40px;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;      
+  border-color: transparent;      
+  border-radius: 15px;
+  display: block;
+}
+
+.close-button {
+  font-size: 75px;
+  font-weight: bold;
+  padding: 0px 30px;
+  position: absolute;
+  right: 20px;
+  display: block;
+  margin-left: auto;
+  background-color: #00000000;
+}
+
+
+#project-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  margin-left: -25px;
+}
+
+#project-cards-container > div {
+  background-color: #ffffff19;
+  width: 400px;
+  padding: 10px 40px;
+  padding-top: 0px;
+  margin: 40px 25px;
+  text-align: left;
+  line-height: 75px;
+  border-radius: 20px;
+  font-size: 30px;
+}
+
+.small-progress-bar-container {
+  width: 100%;
+  border-radius: 120px;
+  margin: 10px 0px;
+}
+
+.small-progress-bar {
+  background-color: #3634B3;
+  border-radius: 120px;
+  padding: 5px;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.small-progress-img {
+  width: 20px;
+  border-radius: 100%;
+  object-fit: cover; /* Ensures the image fits properly */
+  margin-right: 10px;
+}
+
+.name {
+  color: white;
+  font-size: 16px;
+  margin: 0;
+}
+
+label {
+  font-size: 24px;
+}
+
+input {
+  width: 60%;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 15px;
+  margin: 30px;
+}
+
+#profile-page-container {
+  /* border: 2px solid white; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#large-profile-icon {
+  width: 250px;
+  margin-bottom: 20px;
+  border-radius: 1000px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#large-name {
+  font-size: 36px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+#delete-profile-button {
+  font-size: 22px;
+  border: 3px solid white;
+  border-radius: 100px;
+  padding: 15px 30px;
+  margin-top: 30px;
+  font-weight: 400;
+  background-color: #00000000;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+#create-project-container {
+  /* border: 2px solid white; */
+  width: 900px;
+  margin: 0 auto;
 }

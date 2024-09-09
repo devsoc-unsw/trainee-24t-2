@@ -30,7 +30,7 @@ function App() {
   };
 
   // State to manage the current screen
-  const [currentScreen, setCurrentScreen] = useState("dashboard");
+  const [currentScreen, setCurrentScreen] = useState("login");
 
   // State to manage the user
   const [userInfo, setUserInfo] = useState(user);
@@ -52,11 +52,28 @@ function App() {
     setCurrentScreen("dashboard");
   };
 
+  const viewProject = () => {
+    setCurrentScreen("viewProject");
+  };
+
+  const login = () => {
+    setUserInfo(user);
+    setCurrentScreen("dashboard");
+  }
+
+  const loginPage = () => {
+    setCurrentScreen("login")
+  };
+
+  const createAccount = () => {
+    setCurrentScreen("createAccount");
+  }
+
   function DashboardProgressBars ({project}) {
     let progressBars = project.members.map(member => 
       <div className="small-progress-bar-container">
         <div className="small-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}>
-            <img className="small-progress-img" src={user.profilePic}/>
+            <img className="small-progress-img" src={userInfo.profilePic}/>
             <span className="name">{member.name}</span>
         </div>
       </div>
@@ -65,21 +82,67 @@ function App() {
     return progressBars;
   };
 
+  let content;
+
+  // TODO: View Projects screen
+  let currentProject;
+  function DisplayProject ({project}) {
+    setCurrentScreen("viewProject")
+    currentProject = project;
+    
+    return (
+      <>
+        <div className='header'>
+        <h1>{project.name}</h1>
+        <button className="close-button" onClick={closeScreen}>
+          x
+        </button>
+      </div>
+      </>
+    );
+  };
+
   // To render project cards
   // TODO: Add on click with paramaters/props to open the project screen
   let projectCards = projectsInfo.map(project =>
-    <div>
+    <div onClick={() => DisplayProject({ project })}>
       <h3>{project.name}</h3>
       <DashboardProgressBars project={project}/>
     </div>
   );
 
-  let content;
-
   if (currentScreen == "login") {
     content = (
       <>
-        <button onClick = {login}>Login</button>
+      <div className='header' style={{display: "block", textAlign:"center"}}>
+        <h1>Welcome to StudyPal!</h1>
+        <p>The collaborative study platform.</p>
+      </div>
+        <div className="login-signup-container">
+          <p style={{fontSize:"22px"}}>Login or create an account</p>
+          <input className='username-input' name="username" placeholder='Username'></input>
+          <input className='password-input' name="password" placeholder='Password'></input>
+          <button class='login-button' onClick = {login}>Login</button>
+          <p className='login-subtext'>Don't have an account?</p>
+          <a style={{color:"#8C67E8", margin:"auto", display:"block"}} className='login-subtext' onClick={createAccount}>Sign Up</a>
+        </div>
+      </>
+    );
+  } else if (currentScreen == "createAccount") {
+    content = (
+      <>
+        <div className='header'>
+          <h1>Create an Account</h1>
+          <button className="close-button" onClick={loginPage}>
+            x
+          </button>
+        </div>
+        <div className="login-signup-container">
+          <p style={{fontSize:"22px"}}>Create an Account</p>
+          <input className='username-input' name="username" placeholder='Username'></input>
+          <input className='password-input' name="password" placeholder='Password'></input>
+          <button class='login-button' onClick = {login}>Create Account</button>
+        </div>
       </>
     );
   } else if (currentScreen == "dashboard") {
@@ -87,8 +150,8 @@ function App() {
       <div id="dashboard">
 
         <div className="header" style={{justifyContent: "space-between"}}>
-          <h1>Hi {user.name}!</h1>
-          <img src={user.profilePic} id="dashboard-profile-icon" onClick={editProfile} />
+          <h1>Hi {userInfo.name}!</h1>
+          <img src={userInfo.profilePic} id="dashboard-profile-icon" onClick={editProfile} />
         </div>
 
         <button id="new-project-button" onClick={createProject}>
@@ -116,10 +179,10 @@ function App() {
           <br/>
           <label>Members:</label>
           <br/>
-          <button>Share link</button>
-          <button>Add known members</button>
+          <button>Search Members</button>
           <br/>
           <label>Milestones:</label>
+          <br/>
         </div>
       </>
     );
@@ -134,13 +197,27 @@ function App() {
       </div>
         
         <div id="profile-page-container">
-          <img src={user.profilePic} id="large-profile-icon" onClick={editProfile} />
+          <img src={userInfo.profilePic} id="large-profile-icon" onClick={editProfile} />
           <br/>
-          <label id="large-name">{user.name}</label>
+          <label id="large-name">{userInfo.name}</label>
           <br/>
           <button id="delete-profile-button">Delete Profile</button>
         </div>
       </>
+    );
+  } else if (currentScreen == "viewProject") {
+    content = (
+      <>
+
+      </>
+      // <displayProject project={currentProject}/>
+      // <>
+      //   <div className='project-ribbon'></div>
+      //   <div className='graph-milestone-labels'>
+
+      //   </div>
+      //   {/* Function for individual progress bars */}
+      // </>
     );
   }
 

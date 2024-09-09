@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-image: radial-gradient(farthest-corner at 0% 0%, #241745, #000E3D);
+  background-image: radial-gradient(farthest-corner at -20% -20%, #3B1B49, #000E3D);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,17 +16,19 @@
 body {
   margin: 0;
   display: flex;
+  justify-content: center;
+  font-size: 30px;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.4em;
+  font-size: 60px;
   line-height: 1.1;
 }
 
 h2 {
-  font-size: 2.4em;
+  font-size: 36px;
   line-height: 1.1;
   font-weight: 500;
 }

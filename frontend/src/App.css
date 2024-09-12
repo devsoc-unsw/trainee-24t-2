@@ -7,6 +7,7 @@
 
  button, input {
   font-family: "Nunito", sans-serif;
+  margin: 5px;
  }
 
 .login-signup-container {
@@ -111,6 +112,10 @@
   background-color: #00000000;
 }
 
+.close-button:hover {
+  cursor: pointer;
+}
+
 
 #project-cards-container {
   display: flex;
@@ -192,12 +197,24 @@ input {
   font-size: 36px;
 }
 
-#delete-profile-button {
+#profile-options {
   font-size: 22px;
   border: 3px solid white;
   border-radius: 100px;
   padding: 15px 30px;
   margin-top: 30px;
+  font-weight: 400;
+  background-color: #00000000;
+}
+
+#return-dash {
+  font-size: 22px;
+  border: 3px solid white;
+  border-radius: 100px;
+  padding: 15px 30px;
+  bottom: 50px;
+  right: 50px;
+  position: fixed;
   font-weight: 400;
   background-color: #00000000;
 }

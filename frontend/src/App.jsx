@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import profilePic from './assets/pfp.png'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -39,7 +37,7 @@ function App() {
   const [projectsInfo, setProjectsInfo] = useState(projects);
 
   // Functions to open screens
-  // TODO: Integrate thse functions into onclick things for buttons to reduce code
+  // TODO: Integrate these functions into onclick things for buttons to reduce code
   const createProject = () => {
     setCurrentScreen("createProject");
   };
@@ -61,6 +59,10 @@ function App() {
     setCurrentScreen("dashboard");
   }
 
+  const returnToDash = () => {
+    setCurrentScreen("dashboard");
+  }
+
   const loginPage = () => {
     setCurrentScreen("login")
   };
@@ -68,6 +70,10 @@ function App() {
   const createAccount = () => {
     setCurrentScreen("createAccount");
   }
+
+  const signOut = () => {
+    setCurrentScreen("login")
+  };
 
   function DashboardProgressBars ({project}) {
     let progressBars = project.members.map(member => 
@@ -89,15 +95,15 @@ function App() {
   function DisplayProject ({project}) {
     setCurrentScreen("viewProject")
     currentProject = project;
-    
+
     return (
       <>
         <div className='header'>
-        <h1>{project.name}</h1>
-        <button className="close-button" onClick={closeScreen}>
-          x
-        </button>
-      </div>
+          <h1>{project}</h1>
+          <button className="close-button" onClick={closeScreen}>
+            x
+          </button>
+        </div>
       </>
     );
   };
@@ -122,7 +128,7 @@ function App() {
           <p style={{fontSize:"22px"}}>Login or create an account</p>
           <input className='username-input' name="username" placeholder='Username'></input>
           <input className='password-input' name="password" placeholder='Password'></input>
-          <button class='login-button' onClick = {login}>Login</button>
+          <button className='login-button' onClick = {login}>Login</button>
           <p className='login-subtext'>Don't have an account?</p>
           <a style={{color:"#8C67E8", margin:"auto", display:"block"}} className='login-subtext' onClick={createAccount}>Sign Up</a>
         </div>
@@ -141,7 +147,7 @@ function App() {
           <p style={{fontSize:"22px"}}>Create an Account</p>
           <input className='username-input' name="username" placeholder='Username'></input>
           <input className='password-input' name="password" placeholder='Password'></input>
-          <button class='login-button' onClick = {login}>Create Account</button>
+          <button className='login-button' onClick = {login}>Create Account</button>
         </div>
       </>
     );
@@ -159,7 +165,7 @@ function App() {
         </button>
         <h2>Your Projects</h2>
         <div id="project-cards-container">
-          {projectCards}
+          {projectCards}  
         </div>
 
       </div>
@@ -201,23 +207,23 @@ function App() {
           <br/>
           <label id="large-name">{userInfo.name}</label>
           <br/>
-          <button id="delete-profile-button">Delete Profile</button>
+          <button id="profile-options">Delete Profile</button>
+          <button onClick={signOut} id="profile-options">Sign Out</button>
         </div>
       </>
     );
   } else if (currentScreen == "viewProject") {
     content = (
       <>
-
+        <div className="header" style={{justifyContent: "space-between"}}>
+          <h1>English Assignment</h1>
+          <DisplayProject project={currentProject}/>
+        </div>
+        <div className='project-ribbon'></div>
+        <div className='graph-milestone-labels'></div>
+        <button onClick={returnToDash} id="return-dash">Back</button>
+        {/* Function for individual progress bars */}
       </>
-      // <displayProject project={currentProject}/>
-      // <>
-      //   <div className='project-ribbon'></div>
-      //   <div className='graph-milestone-labels'>
-
-      //   </div>
-      //   {/* Function for individual progress bars */}
-      // </>
     );
   }
 

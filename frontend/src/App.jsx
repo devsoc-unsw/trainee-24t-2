@@ -17,7 +17,7 @@ function App() {
   ];
 
   const projects = [
-    {name: 'English Assignment', members: englishAssignmentMembers, totalTasks: 5, tasks: englishAssignmentTasks, id: 1},
+    {name: 'Maths Assignment', members: englishAssignmentMembers, totalTasks: 5, tasks: englishAssignmentTasks, id: 1},
     {name: 'English Assignment', members: englishAssignmentMembers, totalTasks: 5, tasks: englishAssignmentTasks, id: 2},
   ];
 
@@ -35,6 +35,9 @@ function App() {
 
   // State to manage projects
   const [projectsInfo, setProjectsInfo] = useState(projects);
+
+  // State to manage current project being viewed
+  const [currentProject, setCurrentProject] = useState();
 
   // Functions to open screens
   // TODO: Integrate these functions into onclick things for buttons to reduce code
@@ -91,18 +94,50 @@ function App() {
   let content;
 
   // TODO: View Projects screen
-  let currentProject;
   function DisplayProject ({project}) {
+    setCurrentProject(project);
     setCurrentScreen("viewProject")
-    currentProject = project;
 
     return (
       <>
         <div className='header'>
-          <h1>{project}</h1>
+          <h1>{currentProject.name}</h1>
           <button className="close-button" onClick={closeScreen}>
             x
           </button>
+        </div>
+
+        <div className='project-ribbon'>
+          <button className="ribbon-button">Add/Remove Members</button>
+          <button className="ribbon-button">Edit Milestones</button>
+          <button className="ribbon-button">Edit Project Name</button>
+          <button className="ribbon-button">Delete Project</button>
+        </div>
+
+        <div className='large-project-graph'>
+          <div className="task-labels">
+            {project.tasks.map(task => (
+              <div className="task-label">
+                {task}
+              </div>
+            ))}
+          </div>
+
+          <div className='large-progress-bars'>
+            {project.members.map(member => (
+                
+              <div className="task-row">
+                <div className="large-graph-profile">
+                  <img src={userInfo.profilePic} className="large-graph-profile-img" />
+                  <span className="large-graph-name">{member.name}</span>
+                </div>
+                <div className="large-progress-bar-container">
+                  <div className="large-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}></div>
+                </div>
+              </div>
+
+            ))}
+          </div>
         </div>
       </>
     );
@@ -185,10 +220,14 @@ function App() {
           <br/>
           <label>Members:</label>
           <br/>
-          <button>Search Members</button>
+          <input id="user-search" placeholder='Enter username'></input>
           <br/>
           <label>Milestones:</label>
           <br/>
+          <div className='milestone-input'>
+            <input name="milestone-name" className="milestone-name-input" placeholder="Milestone name"></input>
+            <input name='milestone-description' className="milestone-description-input" placeholder='Milestone description (optional)'></input>
+          </div>
         </div>
       </>
     );
@@ -215,14 +254,17 @@ function App() {
   } else if (currentScreen == "viewProject") {
     content = (
       <>
-        <div className="header" style={{justifyContent: "space-between"}}>
+        {/* <div className="header" style={{justifyContent: "space-between"}}>
           <h1>English Assignment</h1>
           <DisplayProject project={currentProject}/>
-        </div>
-        <div className='project-ribbon'></div>
+        </div> */}
+        {/* <div className='project-ribbon'></div>
         <div className='graph-milestone-labels'></div>
-        <button onClick={returnToDash} id="return-dash">Back</button>
+        <button onClick={returnToDash} id="return-dash">Back</button> */}
         {/* Function for individual progress bars */}
+
+
+        <DisplayProject project={currentProject}/>
       </>
     );
   }

@@ -5,9 +5,23 @@
   text-align: left;
 }
 
+input {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  outline: none
+}
+
+input:focus {
+  color: rgba(255, 255, 255, 0.8);
+  outline: none;
+}
+
  button, input {
   font-family: "Nunito", sans-serif;
   margin: 5px;
+  outline: none;
  }
 
 .login-signup-container {
@@ -59,11 +73,11 @@
 }
 
 .header {
-  /* border: 2px solid white; */
+  border: 2px solid white;
   padding: 0;
   width: 95vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
   align-items: center;
   left: 50%;
@@ -178,6 +192,26 @@ input {
   margin: 30px;
 }
 
+.milestone-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 10px 0px;
+  margin: 15px 0px;
+}
+
+.milestone-input input {
+  background-color: transparent;
+  margin: 0;
+}
+
+.milestone-name-input {
+  font-size: 18px;
+}
+
+.milestone-description-input {
+  font-size: 16px;
+}
+
 #profile-page-container {
   /* border: 2px solid white; */
   position: fixed;
@@ -224,4 +258,113 @@ input {
   width: 900px;
   margin: 0 auto;
   justify-content: center;
+}
+
+#user-search {
+  width: 200px;
+  padding: 0px 20px;
+  font-size: 18px;
+  border-radius: 100px;
+}
+
+.project-ribbon {
+  display: flex;
+  justify-content: space-around; /* Ensure consistent spacing between buttons */
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 10px;
+  width: 85vw;
+  margin: 0 auto; /* Center the bar horizontally */
+  max-width: 1200px; /* Optional: set a max width so it doesn't stretch too much on large screens */
+}
+
+.ribbon-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 50px;
+  flex: 1; /* Ensure buttons grow evenly */
+  text-align: center; /* Center the text inside each button */
+}
+
+.ribbon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.large-project-graph {
+  margin: 50px 0px;
+  width: 80vw;
+  border: 2px solid blue;
+}
+
+.task-labels {
+  display: flex;
+  align-items: center;
+  border: 2px solid white;
+}
+
+
+.task-label {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+  padding-bottom: 5px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.large-progress-bars {
+  display: block;
+  margin: auto;
+  width: 80vw;
+}
+
+.large-graph-profile {
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.large-graph-profile-img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: block;
+  margin: auto;
+  margin-bottom: -10px;
+}
+
+.large-graph-name {
+  font-size: 14px;
+  color: white; /* Adjust as per background color */
+}
+
+.large-progress-bar-container {
+  border-radius: 120px;
+  margin: 10px 0px;
+  position: relative;
+  flex: 1;
+}
+
+.large-progress-bar {
+  background-color: #3634B3;
+  border-radius: 120px;
+  padding: 5px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }

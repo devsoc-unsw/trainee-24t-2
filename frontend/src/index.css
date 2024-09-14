@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-image: radial-gradient(farthest-corner at -20% -20%, #3B1B49, #000E3D);
+  background-image: radial-gradient(farthest-corner at -20% -20%, #5e1e67, #000E3D);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,6 +35,7 @@ h2 {
 
 h3 {
   font-size: 28px;
+  font-weight: 600;
   margin: 20px 0px;
   margin-top: 5px;
   margin-bottom: -10px;

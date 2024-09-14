@@ -190,7 +190,7 @@ function App() {
     content = (
       <div id="dashboard">
 
-        <div className="header" style={{justifyContent: "space-between"}}>
+        <div className="header" style={{justifyContent: "space-between", width:"95vw"}}>
           <h1>Hi {userInfo.name}!</h1>
           <img src={userInfo.profilePic} id="dashboard-profile-icon" onClick={editProfile} />
         </div>

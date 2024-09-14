@@ -61,6 +61,10 @@ function App() {
     setCurrentScreen("editProjectName");
   };
 
+  const editMembers = () => {
+    setCurrentScreen("editMembers");
+  };
+
   const deleteProject = () => {
     setCurrentScreen("deleteProject");
   };
@@ -145,7 +149,7 @@ function App() {
         </div>
 
         <div className='project-ribbon'>
-          <button className="ribbon-button">Add/Remove Members</button>
+          <button className="ribbon-button" onClick={editMembers}>Add/Remove Members</button>
           <button className="ribbon-button">Edit Milestones</button>
           <button className="ribbon-button" onClick={editProjectName}>Edit Project Name</button>
           <button className="ribbon-button" onClick={deleteProject}>Delete Project</button>
@@ -352,6 +356,26 @@ function App() {
           <input style={{marginLeft:"0", display:"block", margin:"auto"}} name="projectName"/>
           <br/>
           <button id='profile-options' style={{display:"block", margin:"auto"}}>Save</button>
+        </div>
+      </>
+    );
+  } else if (currentScreen == 'editMembers') {
+    content = (
+      <>
+        <div className='header'>
+          <h1>Edit Members</h1>
+          <button className="close-button" onClick={viewProject}>
+            x
+          </button>
+        </div>
+        <input style={{marginLeft:"0", display:"block", margin:"auto", textAlign:"center", marginTop:"30px"}} name="User Search" placeholder="Search Users to Add"/>
+        <div className='members-container'>
+          {currentProject.members.map(member => (
+            <div>
+              {member.name}
+              <button className="remove-user-button">x</button>
+            </div>
+          ))}
         </div>
       </>
     );

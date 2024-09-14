@@ -13,6 +13,10 @@ input {
   outline: none
 }
 
+::placeholder {
+  color: rgba(255, 255, 255, 0.588);
+}
+
 input:focus {
   color: rgba(255, 255, 255, 0.8);
   outline: none;
@@ -102,8 +106,9 @@ input:focus {
 }
          
 #new-project-button {
-  background-image: linear-gradient(103.09deg, #855be0 0%, #3634B3 100%);
+  background-image: linear-gradient(103.09deg, #7A4DDB 0%, #3634B3 100%);
   outline: none;
+  border: none;
   font-size: 26px;
   padding: 18px 55px;
   text-align: center;
@@ -122,7 +127,7 @@ input:focus {
   font-weight: bold;
   padding: 0px 30px;
   position: absolute;
-  right: 0px;
+  right: -5vw;
   display: block;
   margin-left: auto;
   border: none;
@@ -144,7 +149,7 @@ input:focus {
 #project-cards-container > div {
   background-color: rgba(255, 255, 255, 0.08);
   width: 400px;
-  padding: 10px 40px;
+  padding: 10px 30px;
   padding-top: 0px;
   margin: 0px 25px;
   text-align: left;
@@ -157,23 +162,47 @@ input:focus {
   width: 100%;
   border-radius: 120px;
   margin: 10px 0px;
+  flex: 1;
+  position: relative;
 }
 
 .small-progress-bar {
-  background-color: #3634B3;
+  background-color: #3634b3;
   border-radius: 120px;
   padding: 5px;
-  height: 20px;
+  height: 20px; /* Set the height to match .small-complete-task */
   position: relative;
   display: flex;
-  align-items: center;
+  z-index: 10;
+  align-items: center; /* Center elements vertically */
 }
 
 .small-progress-img {
   width: 22px;
   border-radius: 100%;
-  object-fit: cover; /* Ensures the image fits properly */
+  object-fit: cover;
   margin-right: 10px;
+}
+
+.small-complete-task {
+  position: absolute;
+  color: transparent;
+  font-size: 13px;
+  padding-right: 20px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  z-index: 5;
+  border-radius: 120px;
+  height: 30px; /* Match the height of .small-progress-bar */
+  top: 0; /* Align it vertically */
+}
+
+.small-complete-task:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
 .name {
@@ -181,6 +210,8 @@ input:focus {
   font-size: 16px;
   margin: 0;
 }
+
+
 
 label {
   font-size: 24px;
@@ -267,7 +298,30 @@ input {
   width: 200px;
   padding: 0px 20px;
   font-size: 18px;
+  text-align: center;
   border-radius: 100px;
+}
+
+#add-milestone {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  display: block;
+  margin: auto;
+}
+
+#create-project {
+  display: block;
+  margin: 40px auto;
+  padding: 10px 60px;
+  font-size: 24px;
+  background-image: linear-gradient(45deg, #7A4DDB 0%, #3634B3  100%);
+  border: none;
+  border-radius: 300px;
 }
 
 .project-ribbon {
@@ -332,7 +386,7 @@ input {
 
 .large-graph-profile {
   align-items: center;
-  padding-top: 20px;
+  padding-top: 15px;
   margin-bottom: -10px;
   justify-content: center;
   margin-right: 20px;
@@ -363,11 +417,33 @@ input {
 }
 
 .large-progress-bar {
+  position: relative;
+  z-index: 10;
   background-color: #3634B3;
   border-radius: 120px;
   padding: 0px;
-  height: 50px;
-  position: relative;
+  height: 55px;
   display: flex;
   align-items: center;
+}
+
+.large-complete-task {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  font-size: 18px;
+  display: flex;
+  padding-right: 6vw;
+  box-sizing: border-box;
+  justify-content: flex-end; /* Align the text to the right */
+  align-items: center; /* Vertically center the text */
+  text-align: right;
+  z-index: 5;
+  border-radius: 120px;
+  height: 55px;
+}
+
+.large-complete-task:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }

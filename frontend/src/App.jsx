@@ -79,21 +79,50 @@ function App() {
   };
 
   function DashboardProgressBars ({project}) {
-    let progressBars = project.members.map(member => 
-      <div className="small-progress-bar-container">
-        <div className="small-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}>
-            <img className="small-progress-img" src={userInfo.profilePic}/>
-            <span className="name">{member.name}</span>
-        </div>
+    // let progressBars = project.members.map(member => 
+    //   <div className="small-progress-bar-container">
+    //     <div className="small-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}>
+    //         <img className="small-progress-img" src={userInfo.profilePic}/>
+    //         <span className="name">{member.name}</span>
+    //     </div>
+    //   </div>
+    // );
+    return (
+      <div>
+        {project.members.map(member => {
+          if (member.name === userInfo.name && member.tasksCompleted != project.totalTasks) {
+            return (
+              <div className="small-progress-bar-container" key={member.name}>
+                <div className="small-complete-task" 
+                     style={{width: `${((member.tasksCompleted + 1) / project.totalTasks) * 100}%`}} 
+                     onClick={() => { member.tasksCompleted++; }}>
+                  Done
+                </div>
+                <div className="small-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}>
+                  <img className="small-progress-img" src={userInfo.profilePic} alt="profile" />
+                  <span className="name">{member.name}</span>
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div className="small-progress-bar-container" key={member.name}>
+                <div className="small-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}>
+                  <img className="small-progress-img" src={userInfo.profilePic} alt="profile" />
+                  <span className="name">{member.name}</span>
+                </div>
+              </div>
+            );
+          }
+        })}
       </div>
-    );
+    );    
 
-    return progressBars;
+    // return progressBars;
   };
 
   let content;
 
-  // TODO: View Projects screen
   function DisplayProject ({project}) {
     setCurrentProject(project);
     setCurrentScreen("viewProject")
@@ -124,20 +153,36 @@ function App() {
           </div>
 
           <div className='large-progress-bars'>
-            {project.members.map(member => (
-                
-              <div className="task-row">
-                <div className="large-graph-profile">
-                  <img src={userInfo.profilePic} className="large-graph-profile-img" />
-                  <span className="large-graph-name">{member.name}</span>
-                </div>
-                <div className="large-progress-bar-container">
-                  <div className="large-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}></div>
-                </div>
-              </div>
+            {project.members.map((member, index) => {
+              if (member.name === userInfo.name && member.tasksCompleted != project.totalTasks) {
+                return (
+                  <div className="task-row" key={index}>
+                    <div className="large-graph-profile">
+                      <img src={userInfo.profilePic} className="large-graph-profile-img" />
+                      <span className="large-graph-name">{member.name}</span>
+                    </div>
+                    <div className="large-progress-bar-container">
+                      <div className="large-complete-task" style={{width: `${((member.tasksCompleted + 1) / project.totalTasks) * 100}%`}} onClick={() => member.tasksCompleted++}>Done</div>
+                      <div className="large-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}></div>
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="task-row" key={index}>
+                    <div className="large-graph-profile">
+                      <img src={userInfo.profilePic} className="large-graph-profile-img" />
+                      <span className="large-graph-name">{member.name}</span>
+                    </div>
+                    <div className="large-progress-bar-container">
+                      <div className="large-progress-bar" style={{width: `${(member.tasksCompleted / project.totalTasks) * 100}%`}}></div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+</div>
 
-            ))}
-          </div>
         </div>
       </>
     );
@@ -219,7 +264,6 @@ function App() {
           <label>Project name: <input name="projectName"/></label>
           <br/>
           <label>Members:</label>
-          <br/>
           <input id="user-search" placeholder='Enter username'></input>
           <br/>
           <label>Milestones:</label>
@@ -228,6 +272,8 @@ function App() {
             <input name="milestone-name" className="milestone-name-input" placeholder="Milestone name"></input>
             <input name='milestone-description' className="milestone-description-input" placeholder='Milestone description (optional)'></input>
           </div>
+          <button id="add-milestone">Add Milestone</button>
+          <button id="create-project">Create Project</button>
         </div>
       </>
     );

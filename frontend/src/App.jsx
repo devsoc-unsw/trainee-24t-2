@@ -57,6 +57,14 @@ function App() {
     setCurrentScreen("viewProject");
   };
 
+  const editProjectName = () => {
+    setCurrentScreen("editProjectName");
+  };
+
+  const deleteProject = () => {
+    setCurrentScreen("deleteProject");
+  };
+
   const login = () => {
     setUserInfo(user);
     setCurrentScreen("dashboard");
@@ -139,8 +147,8 @@ function App() {
         <div className='project-ribbon'>
           <button className="ribbon-button">Add/Remove Members</button>
           <button className="ribbon-button">Edit Milestones</button>
-          <button className="ribbon-button">Edit Project Name</button>
-          <button className="ribbon-button">Delete Project</button>
+          <button className="ribbon-button" onClick={editProjectName}>Edit Project Name</button>
+          <button className="ribbon-button" onClick={deleteProject}>Delete Project</button>
         </div>
 
         <div className='large-project-graph'>
@@ -311,6 +319,40 @@ function App() {
 
 
         <DisplayProject project={currentProject}/>
+      </>
+    );
+  } else if (currentScreen == "deleteProject") {
+    content = (
+      <div style={{alignItems:"center", justifyContent:"center", textAlign:"center"}}>
+        <div className='header'>
+          <h1>Delete Project</h1>
+          <button className="close-button" onClick={viewProject}>
+          x
+          </button>
+        </div>
+        <div style={{position: "absolute", top: "42%", left: "50%", transform: "translate(-50%, -50%)"}}>
+          <h2 style={{alignItems:"center", justifyContent:"center", textAlign:"center"}}>Are you sure?</h2>
+          <button id='profile-options'>No</button>
+          <button id='profile-options'>Yes</button>
+        </div>
+      </div>
+    );
+  } else if (currentScreen == "editProjectName") {
+    content = (
+      <>
+        <div className='header'>
+          <h1>Edit Project Name</h1>
+          <button className="close-button" onClick={viewProject}>
+            x
+          </button>
+        </div>
+        <div id="create-project-container" style={{textAlign:"center"}}>
+          <label style={{display:"block", margin:"auto"}}>Project name: </label>
+          <br/>
+          <input style={{marginLeft:"0", display:"block", margin:"auto"}} name="projectName"/>
+          <br/>
+          <button id='profile-options' style={{display:"block", margin:"auto"}}>Save</button>
+        </div>
       </>
     );
   }
